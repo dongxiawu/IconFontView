@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="IconFontView">
+        <attr name="icon_font_code" format="string|reference"/>
+        <attr name="icon_font_color" format="color"/>
+
+    </declare-styleable>
+    <declare-styleable name="IconFontCodeStateListItem">
+        <attr name="code" format="string"/>
+    </declare-styleable>
+</resources>
