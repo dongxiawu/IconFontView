@@ -13,7 +13,14 @@ import kotlin.collections.ArrayList
  * @author wudongxia
  */
 class IconFontCodeStateList : ComplexString {
+    /**
+     * 状态二维数组
+     */
     private lateinit var states: Array<IntArray>
+
+    /**
+     * 不同状态的code列表
+     */
     private lateinit var codes: Array<String>
     private var defaultCode: String? = null
 
@@ -25,16 +32,6 @@ class IconFontCodeStateList : ComplexString {
         this.states = states
         this.codes = codes
         onCodeChanged()
-    }
-
-    private constructor(orig: IconFontCodeStateList?) {
-        if (orig != null) {
-            states = orig.states
-            defaultCode = orig.defaultCode
-
-            // Deep copy, these may change due to applyTheme().
-            codes = orig.codes.clone()
-        }
     }
 
     /**
@@ -52,14 +49,11 @@ class IconFontCodeStateList : ComplexString {
         var type: Int
         while (parser.next().also { type = it } != XmlPullParser.END_DOCUMENT
             && (parser.depth.also { depth = it } >= innerDepth || type != XmlPullParser.END_TAG)) {
-            if (type != XmlPullParser.START_TAG || depth > innerDepth || parser.name != "item") {
+            if (type != XmlPullParser.START_TAG || depth > innerDepth || parser.name != TAG_ITEM) {
                 continue
             }
-            val a = Resources.getSystem().obtainAttributes(
-                attrs,
-                R.styleable.IconFontCodeStateListItem
-            )
-            val baseCode = a.getString(R.styleable.IconFontCodeStateListItem_code)
+            val a = Resources.getSystem().obtainAttributes(attrs, R.styleable.IconFontCodeStateListItem)
+            val baseCode = a.getString(R.styleable.IconFontCodeStateListItem_code) ?: DEFAULT_CODE
             a.recycle()
 
             // Parse all unrecognized attributes as state specifiers.
@@ -75,15 +69,13 @@ class IconFontCodeStateList : ComplexString {
             if (listSize == 0 || stateSpec.isEmpty()) {
                 defaultCode = baseCode
             }
-            codeList.add(baseCode!!)
+            codeList.add(baseCode)
             stateSpecList.add(stateSpec)
             listSize++
         }
         this.defaultCode = defaultCode
-        codes = Array(listSize) {i: Int -> "" }
-        states = Array(listSize) {i -> IntArray(0) }
-        System.arraycopy(codeList.toArray(), 0, codes, 0, listSize)
-        System.arraycopy(stateSpecList.toArray(), 0, states, 0, listSize)
+        codes = Array(listSize) {i: Int -> codeList[i] }
+        states = Array(listSize) {i -> stateSpecList[i] }
         onCodeChanged()
     }
 
@@ -96,8 +88,7 @@ class IconFontCodeStateList : ComplexString {
     }
 
     fun getCodeForState(stateSet: IntArray, defaultCode: String): String {
-        val setLength = states.size
-        for (i in 0 until setLength) {
+        for (i in states.indices) {
             val stateSpec = states[i]
             if (StateSet.stateSetMatches(stateSpec, stateSet)) {
                 return codes[i]
@@ -161,6 +152,10 @@ class IconFontCodeStateList : ComplexString {
     companion object {
         private const val TAG = "IconFontCodeStateList"
         private val EMPTY = arrayOf(IntArray(0))
+        private const val DEFAULT_CODE = ""
+        private const val TAG_SELECTOR = "selector"
+        private const val TAG_ITEM = "item"
+
 
         /**
          * @return A ColorStateList containing a single color.
@@ -185,13 +180,10 @@ class IconFontCodeStateList : ComplexString {
         }
 
         @Throws(XmlPullParserException::class, IOException::class)
-        private fun createFromXmlInner(
-            parser: XmlPullParser,
-            attrs: AttributeSet
-        ): IconFontCodeStateList {
+        private fun createFromXmlInner(parser: XmlPullParser, attrs: AttributeSet): IconFontCodeStateList {
             val name = parser.name
-            if (name != "selector") {
-                throw XmlPullParserException(parser.positionDescription + ": invalid color state list tag " + name)
+            if (name != TAG_SELECTOR) {
+                throw XmlPullParserException("${parser.positionDescription}: invalid icon font code state list tag $name")
             }
             val iconFontCodeStateList = IconFontCodeStateList()
             iconFontCodeStateList.inflate(parser, attrs)

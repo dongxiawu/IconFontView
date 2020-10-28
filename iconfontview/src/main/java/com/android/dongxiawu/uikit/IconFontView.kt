@@ -86,7 +86,6 @@ class IconFontView: View {
         val centerX = (left + right).toFloat()/2
         val centerY = (top + bottom).toFloat()/2
         val baseLineY = centerY - paint.fontMetrics.top/2 - paint.fontMetrics.bottom/2
-        // 文字居中
         canvas.drawText(iconFontCode, centerX, baseLineY, this.mPaint)
     }
 
