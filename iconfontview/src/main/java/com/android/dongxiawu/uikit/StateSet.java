@@ -41,7 +41,7 @@ class StateSet {
     public static final int VALUE_STATE_HOVERED = 0x01010367;
     public static final int VALUE_STATE_DRAG_CAN_ACCEPT = 0x01010368;
     public static final int VALUE_STATE_DRAG_HOVERED = 0x01010369;
-    static final int[] VIEW_DRAWABLE_STATES_SORTED = new int[] {
+    private static final int[] SORTED_VIEW_DRAWABLE_STATES = new int[] {
             VALUE_STATE_FOCUSED,
             VALUE_STATE_WINDOW_FOCUSED,
             VALUE_STATE_ENABLED,
@@ -54,9 +54,7 @@ class StateSet {
             VALUE_STATE_DRAG_HOVERED,
     };
 
-    public static final int VIEW_DRAWABLE_STATES_LENGTH = 10;
-
-    static final int[] VIEW_STATE_IDS = new int[]{
+    private static final int[] VIEW_STATE_IDS = new int[]{
             VALUE_STATE_WINDOW_FOCUSED, VIEW_STATE_WINDOW_FOCUSED,
             VALUE_STATE_SELECTED, VIEW_STATE_SELECTED,
             VALUE_STATE_FOCUSED, VIEW_STATE_FOCUSED,
@@ -70,14 +68,14 @@ class StateSet {
     };
 
     static {
-        if ((VIEW_STATE_IDS.length / 2) != VIEW_DRAWABLE_STATES_SORTED.length) {
+        if ((VIEW_STATE_IDS.length / 2) != SORTED_VIEW_DRAWABLE_STATES.length) {
             throw new IllegalStateException(
                     "VIEW_STATE_IDs array length does not match ViewDrawableStates style array");
         }
 
         final int[] orderedIds = new int[VIEW_STATE_IDS.length];
-        for (int i = 0; i < VIEW_DRAWABLE_STATES_LENGTH; i++) {
-            final int viewState = VIEW_DRAWABLE_STATES_SORTED[i];
+        for (int i = 0; i < SORTED_VIEW_DRAWABLE_STATES.length; i++) {
+            final int viewState = SORTED_VIEW_DRAWABLE_STATES[i];
             for (int j = 0; j < VIEW_STATE_IDS.length; j += 2) {
                 if (VIEW_STATE_IDS[j] == viewState) {
                     orderedIds[i * 2] = viewState;

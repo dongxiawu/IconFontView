@@ -26,9 +26,10 @@
             android:layout_margin="5dp"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:padding="10dp"
             android:focusable="true"
             android:clickable="true"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/icon_circle_bg"
             app:icon_font_code="@drawable/icon_font_2"
             app:icon_font_color="@color/colorAccent" />
         <com.android.dongxiawu.uikit.IconFontView
