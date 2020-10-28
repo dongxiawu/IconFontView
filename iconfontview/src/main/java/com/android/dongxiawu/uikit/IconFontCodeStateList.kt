@@ -185,7 +185,7 @@ class IconFontCodeStateList : ComplexString {
         }
 
         @Throws(XmlPullParserException::class, IOException::class)
-        fun createFromXmlInner(
+        private fun createFromXmlInner(
             parser: XmlPullParser,
             attrs: AttributeSet
         ): IconFontCodeStateList {

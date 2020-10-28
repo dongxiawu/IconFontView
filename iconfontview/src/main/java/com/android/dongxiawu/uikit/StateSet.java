@@ -54,7 +54,6 @@ class StateSet {
             VALUE_STATE_DRAG_HOVERED,
     };
 
-    public static final int STATE_CHECKED = 0x010100a0;
     public static final int VIEW_DRAWABLE_STATES_LENGTH = 10;
 
     static final int[] VIEW_STATE_IDS = new int[]{

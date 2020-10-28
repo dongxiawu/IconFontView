@@ -3,7 +3,10 @@ package com.android.dongxiawu.uikit
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.TypedArray
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Typeface
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
@@ -20,6 +23,7 @@ import java.io.IOException
  * @author wudongxia
  */
 class IconFontView: View {
+
     private var mIconFontCodeStateList: IconFontCodeStateList
     private var mColorStateList: ColorStateList
     
@@ -72,10 +76,10 @@ class IconFontView: View {
         val paint = this.getPaint()
         paint.color = this.mColorStateList.getColorForState(drawableState, DEFAULT_COLOR)
         val iconFontCode = mIconFontCodeStateList.getCodeForState(drawableState, DEFAULT_CODE)
-        val left = left + paddingLeft
-        val right = right - paddingRight
-        val top = top - paddingTop
-        val bottom = bottom + paddingBottom
+        val left = paddingLeft
+        val right = width - paddingRight
+        val top = paddingTop
+        val bottom = height - paddingBottom
         val width = right - left
         val height = bottom - top
         paint.textSize = width.coerceAtMost(height).toFloat()
@@ -95,6 +99,14 @@ class IconFontView: View {
         val typeface = if (mIconFontTypeface == null) { sIconFontTypeface } else { mIconFontTypeface }
         this.mPaint.typeface = typeface
         return this.mPaint
+    }
+
+    override fun drawableStateChanged() {
+        super.drawableStateChanged()
+        if (mColorStateList.isStateful
+            || mIconFontCodeStateList.isStateful()) {
+            invalidate()
+        }
     }
 
     companion object {
