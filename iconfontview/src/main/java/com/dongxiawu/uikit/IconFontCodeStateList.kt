@@ -1,12 +1,12 @@
-package com.android.dongxiawu.uikit
+package com.dongxiawu.uikit
 
 import android.content.res.Resources
 import android.util.AttributeSet
 import android.util.Xml
+import com.android.dongxiawu.uikit.R
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import java.io.IOException
-import java.util.*
 import kotlin.collections.ArrayList
 
 /**
@@ -52,7 +52,9 @@ class IconFontCodeStateList : ComplexString {
             if (type != XmlPullParser.START_TAG || depth > innerDepth || parser.name != TAG_ITEM) {
                 continue
             }
-            val a = Resources.getSystem().obtainAttributes(attrs, R.styleable.IconFontCodeStateListItem)
+            val a = Resources.getSystem().obtainAttributes(attrs,
+                R.styleable.IconFontCodeStateListItem
+            )
             val baseCode = a.getString(R.styleable.IconFontCodeStateListItem_code) ?: DEFAULT_CODE
             a.recycle()
 
@@ -161,7 +163,10 @@ class IconFontCodeStateList : ComplexString {
          * @return A ColorStateList containing a single color.
          */
         fun valueOf(code: String): IconFontCodeStateList {
-            return IconFontCodeStateList(EMPTY, arrayOf(code))
+            return IconFontCodeStateList(
+                EMPTY,
+                arrayOf(code)
+            )
         }
 
         @Throws(XmlPullParserException::class, IOException::class)
@@ -176,7 +181,10 @@ class IconFontCodeStateList : ComplexString {
             if (type != XmlPullParser.START_TAG) {
                 throw XmlPullParserException("No start tag found")
             }
-            return createFromXmlInner(parser, attrs)
+            return createFromXmlInner(
+                parser,
+                attrs
+            )
         }
 
         @Throws(XmlPullParserException::class, IOException::class)
@@ -185,7 +193,8 @@ class IconFontCodeStateList : ComplexString {
             if (name != TAG_SELECTOR) {
                 throw XmlPullParserException("${parser.positionDescription}: invalid icon font code state list tag $name")
             }
-            val iconFontCodeStateList = IconFontCodeStateList()
+            val iconFontCodeStateList =
+                IconFontCodeStateList()
             iconFontCodeStateList.inflate(parser, attrs)
             return iconFontCodeStateList
         }

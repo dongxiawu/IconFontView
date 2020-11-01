@@ -1,4 +1,4 @@
-package com.android.dongxiawu.uikit
+package com.dongxiawu.uikit
 
 import android.content.Context
 import android.content.res.ColorStateList
@@ -13,6 +13,7 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Nullable
 import androidx.annotation.StyleableRes
+import com.android.dongxiawu.uikit.R
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import java.io.IOException
@@ -39,9 +40,14 @@ class IconFontView: View {
     constructor(context: Context, @Nullable attrs: AttributeSet?, defStyleAttr: Int)
             : super(context, attrs, defStyleAttr) {
         initDefaultTypeface(context)
-        val a = context.obtainStyledAttributes(attrs, R.styleable.IconFontView)
+        val a = context.obtainStyledAttributes(attrs,
+            R.styleable.IconFontView
+        )
         mColorStateList = a.getColorStateList(R.styleable.IconFontView_icon_font_color)
-            ?: ColorStateList.valueOf(a.getColor(R.styleable.IconFontView_icon_font_color, DEFAULT_COLOR))
+            ?: ColorStateList.valueOf(a.getColor(
+                R.styleable.IconFontView_icon_font_color,
+                DEFAULT_COLOR
+            ))
         mIconFontCodeStateList = a.getIconFontCodeStateList(R.styleable.IconFontView_icon_font_code)
             ?: IconFontCodeStateList.valueOf(a.getString(R.styleable.IconFontView_icon_font_code) ?: DEFAULT_CODE)
         a.recycle()
@@ -74,8 +80,12 @@ class IconFontView: View {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         val paint = this.getPaint()
-        paint.color = this.mColorStateList.getColorForState(drawableState, DEFAULT_COLOR)
-        val iconFontCode = mIconFontCodeStateList.getCodeForState(drawableState, DEFAULT_CODE)
+        paint.color = this.mColorStateList.getColorForState(drawableState,
+            DEFAULT_COLOR
+        )
+        val iconFontCode = mIconFontCodeStateList.getCodeForState(drawableState,
+            DEFAULT_CODE
+        )
         val left = paddingLeft
         val right = width - paddingRight
         val top = paddingTop
@@ -95,7 +105,9 @@ class IconFontView: View {
             this.mPaint.isAntiAlias = true
             this.mPaint.textAlign = Paint.Align.CENTER
         }
-        val typeface = if (mIconFontTypeface == null) { sIconFontTypeface } else { mIconFontTypeface }
+        val typeface = if (mIconFontTypeface == null) {
+            sIconFontTypeface
+        } else { mIconFontTypeface }
         this.mPaint.typeface = typeface
         return this.mPaint
     }
@@ -116,9 +128,13 @@ class IconFontView: View {
         private const val DEFAULT_TYPEFACE_FILE = "4B9C87F8981C89E7134F151D95C.ttf"
 
         private fun initDefaultTypeface(context: Context) {
-            if (::sIconFontTypeface.isInitialized.not()) {
-                setDefaultTypeface(Typeface.createFromAsset(
-                    context.applicationContext.assets, DEFAULT_TYPEFACE_FILE))
+            if (Companion::sIconFontTypeface.isInitialized.not()) {
+                setDefaultTypeface(
+                    Typeface.createFromAsset(
+                        context.applicationContext.assets,
+                        DEFAULT_TYPEFACE_FILE
+                    )
+                )
             } else {
                 Log.d(TAG, "default typeface has been set")
             }

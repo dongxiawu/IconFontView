@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_horizontal">
-        <com.android.dongxiawu.uikit.IconFontView
+        <com.dongxiawu.uikit.IconFontView
             android:layout_margin="5dp"
             android:id="@+id/icon"
             android:layout_width="50dp"
@@ -21,7 +21,7 @@
             android:background="@color/colorPrimary"
             app:icon_font_code="@drawable/icon_font_1"
             app:icon_font_color="@color/colorAccent" />
-        <com.android.dongxiawu.uikit.IconFontView
+        <com.dongxiawu.uikit.IconFontView
             android:id="@+id/icon2"
             android:layout_margin="5dp"
             android:layout_width="50dp"
@@ -32,7 +32,7 @@
             android:background="@drawable/icon_circle_bg"
             app:icon_font_code="@drawable/icon_font_2"
             app:icon_font_color="@color/colorAccent" />
-        <com.android.dongxiawu.uikit.IconFontView
+        <com.dongxiawu.uikit.IconFontView
             android:id="@+id/icon3"
             android:layout_margin="5dp"
             android:layout_width="50dp"
@@ -42,7 +42,7 @@
             android:background="@color/colorPrimary"
             app:icon_font_code="@drawable/icon_font_3"
             app:icon_font_color="@color/colorAccent" />
-        <com.android.dongxiawu.uikit.IconFontView
+        <com.dongxiawu.uikit.IconFontView
             android:id="@+id/icon4"
             android:layout_margin="5dp"
             android:layout_width="50dp"
@@ -52,7 +52,7 @@
             android:background="@color/colorPrimary"
             app:icon_font_code="@drawable/icon_font_4"
             app:icon_font_color="@color/colorAccent" />
-        <com.android.dongxiawu.uikit.IconFontView
+        <com.dongxiawu.uikit.IconFontView
             android:id="@+id/icon5"
             android:layout_margin="5dp"
             android:layout_width="50dp"
@@ -62,7 +62,7 @@
             android:background="@color/colorPrimary"
             app:icon_font_code="@drawable/icon_font_5"
             app:icon_font_color="@color/colorAccent" />
-        <com.android.dongxiawu.uikit.IconFontView
+        <com.dongxiawu.uikit.IconFontView
             android:id="@+id/icon6"
             android:layout_margin="5dp"
             android:layout_width="50dp"
@@ -72,7 +72,7 @@
             android:background="@color/colorPrimary"
             app:icon_font_code="@drawable/icon_font_6"
             app:icon_font_color="@color/colorAccent" />
-        <com.android.dongxiawu.uikit.IconFontView
+        <com.dongxiawu.uikit.IconFontView
             android:id="@+id/icon7"
             android:layout_margin="5dp"
             android:layout_width="50dp"
@@ -82,7 +82,7 @@
             android:background="@color/colorPrimary"
             app:icon_font_code="@drawable/icon_font_7"
             app:icon_font_color="@color/colorAccent" />
-        <com.android.dongxiawu.uikit.IconFontView
+        <com.dongxiawu.uikit.IconFontView
             android:id="@+id/icon8"
             android:layout_margin="5dp"
             android:layout_width="50dp"
@@ -92,7 +92,7 @@
             android:background="@color/colorPrimary"
             app:icon_font_code="@drawable/icon_font_8"
             app:icon_font_color="@color/colorAccent" />
-        <com.android.dongxiawu.uikit.IconFontView
+        <com.dongxiawu.uikit.IconFontView
             android:id="@+id/icon9"
             android:layout_margin="5dp"
             android:layout_width="50dp"
@@ -102,7 +102,7 @@
             android:background="@color/colorPrimary"
             app:icon_font_code="@drawable/icon_font_9"
             app:icon_font_color="@color/colorAccent" />
-        <com.android.dongxiawu.uikit.IconFontView
+        <com.dongxiawu.uikit.IconFontView
             android:id="@+id/icon10"
             android:layout_margin="5dp"
             android:layout_width="50dp"

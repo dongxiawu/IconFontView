@@ -1,4 +1,4 @@
-package com.android.dongxiawu.uikit
+package com.dongxiawu.uikit
 
 /**
  * @author wudongxia
