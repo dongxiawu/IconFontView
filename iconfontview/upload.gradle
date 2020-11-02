@@ -1,0 +1,35 @@
+apply plugin: 'maven'
+
+Properties getLocalProperties() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file("local.properties").newDataInputStream())
+    return properties
+}
+
+uploadArchives {
+    Properties localProperties = getLocalProperties()
+    repositories {
+        mavenDeployer {
+            pom.project {
+                pom.groupId = pom_groupId
+                pom.artifactId = pom_artifactId
+                pom.packaging = pom_packaging
+                pom.version = pom_version
+                pom.name = pom_name
+            }
+            if (pom.version.toString().endsWith("-SNAPSHOT")) {
+                repository(url: localProperties.getProperty("sonatype.snapshot.server.address")) {
+                    authentication(
+                            userName: localProperties.getProperty("sonatype.username"),
+                            password: localProperties.getProperty("sonatype.password"))
+                }
+            } else {
+                repository(url: localProperties.getProperty("sonatype.release.server.address")) {
+                    authentication(
+                            userName: localProperties.getProperty("sonatype.username"),
+                            password: localProperties.getProperty("sonatype.password"))
+                }
+            }
+        }
+    }
+}
