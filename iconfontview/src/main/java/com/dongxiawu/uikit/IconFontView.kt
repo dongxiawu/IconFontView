@@ -13,7 +13,6 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Nullable
 import androidx.annotation.StyleableRes
-import com.android.dongxiawu.uikit.R
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import java.io.IOException

@@ -3,7 +3,6 @@ package com.dongxiawu.uikit
 import android.content.res.Resources
 import android.util.AttributeSet
 import android.util.Xml
-import com.android.dongxiawu.uikit.R
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import java.io.IOException
