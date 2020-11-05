@@ -1,0 +1,90 @@
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+//Properties getLocalProperties() {
+//    Properties properties = new Properties()
+//    properties.load(project.rootProject.file("local.properties").newDataInputStream())
+//    return properties
+//}
+
+def getRepositoryUrl() {
+    return POM_VERSION.endsWith("-SNAPSHOT") ? SNAPSHOT_REPOSITORY_URL : RELEASE_REPOSITORY_URL
+}
+
+def isReleaseBuild() {
+    return !POM_VERSION.endsWith("-SNAPSHOT")
+}
+
+afterEvaluate { project ->
+//    Properties localProperties = getLocalProperties()
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+                pom.project {
+                    groupId POM_GROUP_ID
+                    artifactId POM_ARTIFACT_ID
+                    packaging POM_PACKAGEING
+                    version POM_VERSION
+                    name POM_NAME
+                    url POM_URL
+                    description POM_DESCRIPTION
+
+                    scm {
+                        url POM_SCM_URL
+                        connection POM_SCM_CONNECTION
+                        developerConnection POM_SCM_DEV_CONNECTION
+                    }
+
+                    licenses {
+                        license {
+                            name POM_LICENCE_NAME
+                            url POM_LICENCE_URL
+                            distribution POM_LICENCE_DIST
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id POM_DEVELOPER_ID
+                            name POM_DEVELOPER_NAME
+                        }
+                    }
+                }
+                repository(url: getRepositoryUrl()) {
+                    authentication(userName: nexusUsername, password: nexusPassword)
+                }
+            }
+        }
+    }
+
+    signing {
+        required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
+        useGpgCmd()
+        sign configurations.archives
+    }
+
+//    task androidJavadocs(type: Javadoc) {
+//        source = android.sourceSets.main.allJava
+//        classpath += project.files(android.plugin.getRuntimeJarList().join(File.pathSeparator))
+//    }
+//
+//    task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+//        classifier = 'javadoc'
+//        //basename = artifact_id
+//        from androidJavadocs.destinationDir
+//    }
+
+    task androidSourcesJar(type: Jar) {
+        classifier = 'sources'
+        //basename = artifact_id
+        from android.sourceSets.main.java.srcDirs
+    }
+
+    artifacts {
+        //archives packageReleaseJar
+        archives androidSourcesJar
+//        archives androidJavadocsJar
+    }
+}
