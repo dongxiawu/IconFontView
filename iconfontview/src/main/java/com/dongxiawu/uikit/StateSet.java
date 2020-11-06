@@ -1,6 +1,7 @@
 package com.dongxiawu.uikit;
 
 /**
+ * Copy from [com.android.internal.R.StateSet]
  * @author wudongxia
  * @date 2020/10/27
  */

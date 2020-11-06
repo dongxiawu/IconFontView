@@ -2,6 +2,7 @@ package com.dongxiawu.uikit
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.content.res.Resources
 import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.Color
@@ -15,6 +16,7 @@ import androidx.annotation.Nullable
 import androidx.annotation.StyleableRes
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
+import java.io.FileNotFoundException
 import java.io.IOException
 
 /**
@@ -38,7 +40,7 @@ class IconFontView: View {
     constructor(context: Context, @Nullable attrs: AttributeSet?): this(context, attrs, 0)
     constructor(context: Context, @Nullable attrs: AttributeSet?, defStyleAttr: Int)
             : super(context, attrs, defStyleAttr) {
-        initDefaultTypeface(context)
+        checkAndInitDefaultTypeface(context)
         val a = context.obtainStyledAttributes(attrs,
             R.styleable.IconFontView
         )
@@ -126,17 +128,31 @@ class IconFontView: View {
         private lateinit var sIconFontTypeface: Typeface
         private const val DEFAULT_TYPEFACE_FILE = "4B9C87F8981C89E7134F151D95C.ttf"
 
-        private fun initDefaultTypeface(context: Context) {
+        /**
+         * 加载默认字体库，默认字体库名称为 [com.dongxiawu.uikit.IconFontView.DEFAULT_TYPEFACE_FILE]
+         * 如果需要自定义默认字体库的名称，则需要在使用 IconFontView 前调用 [com.dongxiawu.uikit.IconFontView.setDefaultTypeface] 手动设置字体库
+         */
+        private fun checkAndInitDefaultTypeface(context: Context) {
             if (Companion::sIconFontTypeface.isInitialized.not()) {
-                setDefaultTypeface(
-                    Typeface.createFromAsset(
-                        context.applicationContext.assets,
-                        DEFAULT_TYPEFACE_FILE
+                if (isAssetsFileExist(context, DEFAULT_TYPEFACE_FILE)) {
+                    setDefaultTypeface(
+                        Typeface.createFromAsset(
+                            context.applicationContext.assets,
+                            DEFAULT_TYPEFACE_FILE
+                        )
                     )
-                )
+                } else {
+                    throw RuntimeException("can not find typeface file named $DEFAULT_TYPEFACE_FILE" +
+                            ", and typeface has not been assigned manually")
+                }
             } else {
-                Log.d(TAG, "default typeface has been set")
+                Log.d(TAG, "default typeface has been assigned")
             }
+        }
+
+        private fun isAssetsFileExist(context: Context, fileName: String): Boolean {
+            val filePaths = context.applicationContext.assets.list("") ?: emptyArray()
+            return filePaths.any { it == fileName }
         }
 
         /**
@@ -160,6 +176,8 @@ private fun TypedArray.getIconFontCodeStateList(@StyleableRes index: Int) : Icon
     } catch (e: XmlPullParserException) {
         e.printStackTrace()
     } catch (e: IOException) {
+        e.printStackTrace()
+    } catch (e: Resources.NotFoundException) {
         e.printStackTrace()
     }
     return null

@@ -11,106 +11,105 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_horizontal">
-        <com.dongxiawu.uikit.IconFontView
-            android:layout_margin="5dp"
-            android:id="@+id/icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:focusable="true"
-            android:clickable="true"
-            android:background="@color/colorPrimary"
-            app:icon_font_code="@drawable/icon_font_1"
-            app:icon_font_color="@color/colorAccent" />
-        <com.dongxiawu.uikit.IconFontView
-            android:id="@+id/icon2"
-            android:layout_margin="5dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="10dp"
-            android:focusable="true"
-            android:clickable="true"
-            android:background="@drawable/icon_circle_bg"
-            app:icon_font_code="@drawable/icon_font_2"
-            app:icon_font_color="@color/colorAccent" />
-        <com.dongxiawu.uikit.IconFontView
-            android:id="@+id/icon3"
-            android:layout_margin="5dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:focusable="true"
-            android:clickable="true"
-            android:background="@color/colorPrimary"
-            app:icon_font_code="@drawable/icon_font_3"
-            app:icon_font_color="@color/colorAccent" />
-        <com.dongxiawu.uikit.IconFontView
-            android:id="@+id/icon4"
-            android:layout_margin="5dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:focusable="true"
-            android:clickable="true"
-            android:background="@color/colorPrimary"
-            app:icon_font_code="@drawable/icon_font_4"
-            app:icon_font_color="@color/colorAccent" />
-        <com.dongxiawu.uikit.IconFontView
-            android:id="@+id/icon5"
-            android:layout_margin="5dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:focusable="true"
-            android:clickable="true"
-            android:background="@color/colorPrimary"
-            app:icon_font_code="@drawable/icon_font_5"
-            app:icon_font_color="@color/colorAccent" />
-        <com.dongxiawu.uikit.IconFontView
-            android:id="@+id/icon6"
-            android:layout_margin="5dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:focusable="true"
-            android:clickable="true"
-            android:background="@color/colorPrimary"
-            app:icon_font_code="@drawable/icon_font_6"
-            app:icon_font_color="@color/colorAccent" />
-        <com.dongxiawu.uikit.IconFontView
-            android:id="@+id/icon7"
-            android:layout_margin="5dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:focusable="true"
-            android:clickable="true"
-            android:background="@color/colorPrimary"
-            app:icon_font_code="@drawable/icon_font_7"
-            app:icon_font_color="@color/colorAccent" />
-        <com.dongxiawu.uikit.IconFontView
-            android:id="@+id/icon8"
-            android:layout_margin="5dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:focusable="true"
-            android:clickable="true"
-            android:background="@color/colorPrimary"
-            app:icon_font_code="@drawable/icon_font_8"
-            app:icon_font_color="@color/colorAccent" />
-        <com.dongxiawu.uikit.IconFontView
-            android:id="@+id/icon9"
-            android:layout_margin="5dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:focusable="true"
-            android:clickable="true"
-            android:background="@color/colorPrimary"
-            app:icon_font_code="@drawable/icon_font_9"
-            app:icon_font_color="@color/colorAccent" />
-        <com.dongxiawu.uikit.IconFontView
-            android:id="@+id/icon10"
-            android:layout_margin="5dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:focusable="true"
-            android:clickable="true"
-            android:background="@color/colorPrimary"
-            app:icon_font_code="@drawable/icon_font_10"
-            app:icon_font_color="@color/colorAccent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <TextView
+                android:text="基础使用方式"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <com.dongxiawu.uikit.IconFontView
+                android:layout_margin="5dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:icon_font_code="@string/icon_account"
+                app:icon_font_color="@android:color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <TextView
+                android:text="支持多状态，按下试试"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <com.dongxiawu.uikit.IconFontView
+                android:layout_margin="5dp"
+                android:id="@+id/icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/icon_bg_10"
+                app:icon_font_code="@drawable/icon_font_1"
+                app:icon_font_color="@android:color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <TextView
+                android:text="手动设置全局字体库"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="设置全局字体库1" />
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="设置全局字体库2" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <TextView
+                android:text="动态设置字体库"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <com.dongxiawu.uikit.IconFontView
+                android:layout_margin="5dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/icon_bg_10"
+                app:icon_font_code="@drawable/icon_font_1"
+                app:icon_font_color="@android:color/black" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="设置单个字体库1" />
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="设置单个字体库2" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

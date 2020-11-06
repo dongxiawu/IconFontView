@@ -9,6 +9,9 @@ import java.io.IOException
 import kotlin.collections.ArrayList
 
 /**
+ * Design like [android.content.res.ColorStateList]
+ * Lets you map [android.view.View] state sets to icon font code strings.
+ *
  * @author wudongxia
  */
 class IconFontCodeStateList : ComplexString {

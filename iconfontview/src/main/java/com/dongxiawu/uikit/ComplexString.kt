@@ -1,6 +1,8 @@
 package com.dongxiawu.uikit
 
 /**
+ * @see [android.content.res.ComplexColor]
+ * Defines an abstract class for the complex string information, like [IconFontCodeStateList]
  * @author wudongxia
  */
 abstract class ComplexString {
