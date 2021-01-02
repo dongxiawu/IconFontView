@@ -9,6 +9,7 @@ class StateSet {
     /**
      * The order here is very important to
      * {@link android.view.View#getDrawableState()}
+     * 二维数组
      */
     private static final int[][] VIEW_STATE_SETS;
 
@@ -32,6 +33,9 @@ class StateSet {
 
     public static final int VIEW_STATE_DRAG_HOVERED = 1 << 9;
 
+    /**
+     *
+     */
     public static final int VALUE_STATE_FOCUSED = 0x0101009c;
     public static final int VALUE_STATE_WINDOW_FOCUSED = 0x0101009d;
     public static final int VALUE_STATE_ENABLED = 0x0101009e;
